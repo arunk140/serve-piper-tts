@@ -24,8 +24,7 @@ Check the download-voices.sh file for a list of voices and supported languages.
 Get the Latest Piper Executable from Piper's GitHub Releases or using the Download Script (download and extract in the same folder)
 
 - https://github.com/rhasspy/piper/releases/latest
-- ./download-piper.shdownload-voices.sh
-  download-voices.sh
+- ./download-piper.sh
 
 ```
 chmod +x ./download-piper.sh

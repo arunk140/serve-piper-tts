@@ -31,3 +31,5 @@ models/MODEL_CARD
 bin/*
 
 log.txt
+
+serve-piper-go
