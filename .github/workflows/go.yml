@@ -14,8 +14,9 @@ jobs:
         with:
           go-version: '1.15'
 
-      - name: Set release name
-        run: echo "::set-env name=RELEASE_NAME::$(git rev-parse --short ${{ github.sha }})"
+      - name: Get short commit SHA
+        id: commit_sha
+        run: echo "::set-output name=SHA::$(git rev-parse --short ${{ github.sha }})"
 
       - name: Build
         run: go build -o ./build/serve-piper-tts -v ./...
@@ -27,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ env.RELEASE_NAME }}
+          release_name: ${{ steps.commit_sha.outputs.SHA }}
           draft: false
           prerelease: false
 
