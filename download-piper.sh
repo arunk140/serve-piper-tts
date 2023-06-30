@@ -32,3 +32,10 @@ tar -xzf piper.tar.gz -C .
 
 # Clean up the downloaded archive
 rm piper.tar.gz
+
+# if piper is in a subdirectory (piper/), move it to the current directory
+
+if [ -d "piper" ]; then
+    mv piper/* .
+    rm -rf piper
+fi

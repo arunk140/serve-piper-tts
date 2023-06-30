@@ -19,3 +19,11 @@
 
 # Go workspace file
 go.work
+
+espeak-ng-data/
+*.so.*
+*.ort
+
+models/*.json
+models/*.onnx
+models/MODEL_CARD

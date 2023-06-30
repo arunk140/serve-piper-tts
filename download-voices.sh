@@ -69,14 +69,31 @@ if [ ! -d "$destination_folder" ]; then
     mkdir "$destination_folder"
 fi
 
-# Loop through the files and download/extract them
-for file in "${files[@]}"; do
-    # Download the file
-    curl -L -o "$file" "$url/$file"
+# Function to download and extract files based on language filter
+download_and_extract_files() {
+    local lang_filter=$1
 
-    # Extract the file to the destination folder
-    tar -xzf "$file" -C "$destination_folder"
+    for file in "${files[@]}"; do
+        # Check if the file matches the language filter
+        if [[ "$file" == *"$lang_filter"* ]]; then
+            # Download the file
+            curl -L -o "$file" "$url/$file"
 
-    # Clean up the downloaded archive
-    rm "$file"
-done
+            # Extract the file to the destination folder
+            tar -xzf "$file" -C "$destination_folder"
+
+            # Clean up the downloaded archive
+            rm "$file"
+        fi
+    done
+}
+
+# Check if a language filter argument is provided
+if [[ -n $1 ]]; then
+    # Call the download_and_extract_files function with the language filter argument
+    download_and_extract_files "$1"
+else
+    # No language filter argument provided, download all files
+    download_and_extract_files "en"
+fi
+
