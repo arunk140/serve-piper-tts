@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
@@ -16,10 +15,10 @@ import (
 
 const (
 	DEFAULT_VOICE = "en-us-libritts-high.onnx"
-	DEFAULT_PORT = "8080"
-	MODELS_DIR = "models"
-	PIPER_PATH = "./piper"
-	
+	DEFAULT_PORT  = "8080"
+	MODELS_DIR    = "models"
+	PIPER_PATH    = "./piper"
+
 	// DEFAULT_TEXT = "Welcome to the world of speech synthesis!"  // unused
 )
 
@@ -46,7 +45,7 @@ func getListOfVoices() ([]string, error) {
 		return nil, err
 	}
 
-	stdoutBytes, err := ioutil.ReadAll(stdoutPipe)
+	stdoutBytes, err := io.ReadAll(stdoutPipe)
 	if err != nil {
 		return nil, err
 	}
