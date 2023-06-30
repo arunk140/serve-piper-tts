@@ -127,8 +127,8 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// trim whitespace
-	jsonBody.Text = strings.TrimSpace(jsonBody.Text)
-	if jsonBody.Text == "" {
+	textInput := strings.TrimSpace(jsonBody.Text)
+	if textInput == "" {
 		http.Error(w, "Error parsing json - text", http.StatusBadRequest)
 		return
 	}
@@ -162,7 +162,7 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	stdoutPipe, err := runExecutable(jsonBody.Text, voice)
+	stdoutPipe, err := runExecutable(textInput, voice)
 	if err != nil {
 		http.Error(w, "Error running executable", http.StatusInternalServerError)
 		return
@@ -179,9 +179,8 @@ func handleGetRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "audio/wav")
 	w.WriteHeader(http.StatusOK)
 
-	inputText := r.URL.Query().Get("text")
 	// trim whitespace
-	inputText = strings.TrimSpace(inputText)
+	inputText := strings.TrimSpace(r.URL.Query().Get("text"))
 	if inputText == "" {
 		http.Error(w, "Missing Text Parameter.", http.StatusBadRequest)
 	}
