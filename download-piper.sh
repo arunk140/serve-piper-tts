@@ -27,6 +27,8 @@ release_file_url="https://github.com/rhasspy/piper/releases/download/$release_ta
 # Download the release file
 curl -L -o piper.tar.gz $release_file_url
 
+mkdir bin
+
 # Extract the tar gz archive
 tar -xzf piper.tar.gz -C bin
 
