@@ -19,7 +19,7 @@ jobs:
         run: echo "::set-output name=SHA::$(git rev-parse --short ${{ github.sha }})"
 
       - name: Build
-        run: go build -o ./build/serve-piper-tts -v ./...
+        run: go build -v ./...
 
       - name: Create Release
         id: create_release
@@ -39,5 +39,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/serve-piper-tts
-          asset_name: serve-piper-tts
+          asset_path: ./serve-piper-go
+          asset_name: serve-piper-go
