@@ -14,17 +14,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// const DEFAULT_VOICE = "en-us-libritts-high.onnx"
-// const DEFAULT_PORT = "8080"
-// const DEFAULT_TEXT = "Welcome to the world of speech synthesis!"
-
-const {
+const (
 	DEFAULT_VOICE = "en-us-libritts-high.onnx"
 	DEFAULT_PORT = "8080"
 	MODELS_DIR = "models"
 	PIPER_PATH = "./piper"
+	
 	// DEFAULT_TEXT = "Welcome to the world of speech synthesis!"  // unused
-}
+)
 
 func escapeString(input string) string {
 	// escape single quotes, pipe, and backslash, and double quotes
