@@ -40,3 +40,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./serve-piper-go
           asset_name: serve-piper-go
+          asset_content_type: application/octet-stream
