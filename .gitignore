@@ -27,3 +27,7 @@ espeak-ng-data/
 models/*.json
 models/*.onnx
 models/MODEL_CARD
+
+bin/*
+
+log.txt

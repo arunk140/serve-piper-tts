@@ -28,14 +28,7 @@ release_file_url="https://github.com/rhasspy/piper/releases/download/$release_ta
 curl -L -o piper.tar.gz $release_file_url
 
 # Extract the tar gz archive
-tar -xzf piper.tar.gz -C .
+tar -xzf piper.tar.gz -C bin
 
 # Clean up the downloaded archive
 rm piper.tar.gz
-
-# if piper is in a subdirectory (piper/), move it to the current directory
-
-if [ -d "piper" ]; then
-    mv piper/* .
-    rm -rf piper
-fi

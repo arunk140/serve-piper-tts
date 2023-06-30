@@ -17,7 +17,7 @@ const (
 	DEFAULT_VOICE = "en-us-libritts-high.onnx"
 	DEFAULT_PORT  = "8080"
 	MODELS_DIR    = "models"
-	PIPER_PATH    = "./piper"
+	PIPER_PATH    = "./bin/piper/piper"
 
 	// DEFAULT_TEXT = "Welcome to the world of speech synthesis!"  // unused
 )
@@ -106,9 +106,11 @@ func runExecutable(input string, voice string) (io.Reader, error) {
 		return nil, err
 	}
 
-	io.WriteString(stdin, esc)
+	_, err = io.WriteString(stdin, esc)
+	if err != nil {
+		return nil, err
+	}
 	stdin.Close()
-
 	return stdoutPipe, nil
 }
 
