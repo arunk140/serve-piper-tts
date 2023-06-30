@@ -33,7 +33,7 @@ func escapeString(input string) string {
 
 func getListOfVoices() ([]string, error) {
 	// read the list of files in the models directory
-	cmd := exec.Command("ls", "models")
+	cmd := exec.Command("ls", MODELS_DIR)
 
 	stdoutPipe, err := cmd.StdoutPipe()
 	if err != nil {
@@ -88,8 +88,8 @@ func runExecutable(input string, voice string) (io.Reader, error) {
 	// fileName := hashString(input) + ".wav"
 	esc := escapeString(input)
 	logToTextFile(esc, voice)
-	voice = "models/" + voice
-	cmd := exec.Command("./piper", "--model", voice, "--output_file", "-")
+	voice = MODELS_DIR + "/" + voice
+	cmd := exec.Command(PIPER_PATH, "--model", voice, "--output_file", "-")
 
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
@@ -232,10 +232,10 @@ func main() {
 		json.NewEncoder(w).Encode(voices)
 	}).Methods("GET")
 
-	// / -> serve.html
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
 
 	http.Handle("/", r)
-	fmt.Println("Server listening on port 8080")
-	http.ListenAndServe(":8080", nil)
+
+	fmt.Println("Server listening on port " + DEFAULT_PORT)
+	http.ListenAndServe(":"+DEFAULT_PORT, nil)
 }
