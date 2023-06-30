@@ -45,4 +45,10 @@ go build
 ./serve-piper-go
 ```
 
+Runs on Port 8080 By default - Update main.go constant to change port
+
+```
+http://localhost:8080/
+```
+
 API Docs in [Docs.md](Docs.md)
