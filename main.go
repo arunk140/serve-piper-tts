@@ -126,6 +126,8 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// trim whitespace
+	jsonBody.Text = strings.TrimSpace(jsonBody.Text)
 	if jsonBody.Text == "" {
 		http.Error(w, "Error parsing json - text", http.StatusBadRequest)
 		return
@@ -178,6 +180,8 @@ func handleGetRequest(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	inputText := r.URL.Query().Get("text")
+	// trim whitespace
+	inputText = strings.TrimSpace(inputText)
 	if inputText == "" {
 		http.Error(w, "Missing Text Parameter.", http.StatusBadRequest)
 	}
