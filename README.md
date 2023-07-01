@@ -1,5 +1,9 @@
 # serve-piper-tts
 
+Voice Samples from Piper - https://rhasspy.github.io/piper-samples/
+
+Hosted API Test Server (Temporary Link) - https://voice.arunk140.com/ | https://voice.arunk140.com/api/tts?text=github
+
 Go Lang API Wrapper around Piper TTS - Supports TTS Inference and List of Voices
 
 Add you Piper Voice Models from or use the download script (to the models directory)
