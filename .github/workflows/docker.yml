@@ -14,5 +14,4 @@ jobs:
       - name: Build And Push - serve-piper-tts Docker image
         run: |
           docker build . --tag ghcr.io/arunk140/serve-piper-tts:latest
-          docker run ghcr.io/arunk140/serve-piper-tts:latest
           docker push ghcr.io/arunk140/serve-piper-tts:latest
