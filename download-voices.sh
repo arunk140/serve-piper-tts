@@ -93,7 +93,7 @@ if [[ -n $1 ]]; then
     # Call the download_and_extract_files function with the language filter argument
     download_and_extract_files "$1"
 else
-    # No language filter argument provided, download all files
-    download_and_extract_files "en"
+    # No language filter argument provided, download voice-en-us-libritts-high
+    download_and_extract_files "voice-en-us-libritts-high"
 fi
 

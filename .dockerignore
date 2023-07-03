@@ -1,0 +1,6 @@
+models/*
+.onnx
+bin/*
+bin/
+serve-piper-go
+log.txt

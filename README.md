@@ -6,6 +6,23 @@ Hosted API Test Server (Temporary Link) - https://voice.arunk140.com/ | https://
 
 Go Lang API Wrapper around Piper TTS - Supports TTS Inference and List of Voices
 
+---
+
+### Install with Docker
+
+```
+docker pull ghcr.io/arunk140/serve-piper-tts:latest
+docker run -p 8080:8080 ghcr.io/arunk140/serve-piper-tts:latest
+```
+
+OR
+
+```
+docker compose up -d
+```
+
+---
+
 Add you Piper Voice Models from or use the download script (to the models directory)
 
 - https://github.com/rhasspy/piper/releases/tag/v0.0.2
