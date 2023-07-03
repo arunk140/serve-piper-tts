@@ -6,6 +6,7 @@ COPY . .
 RUN chmod +x ./download-piper.sh
 RUN ./download-piper.sh
 
+RUN chmod +x ./download-voices.sh
 RUN ./download-voices.sh
 
 RUN go build .
