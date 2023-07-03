@@ -4,110 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piper TTS - API Server</title>
+    <title>serve-piper-tts</title>
 </head>
 <body>
-    <h1 id="text-to-speech-api">Text-to-Speech API</h1>
-    <p>The Text-to-Speech API allows you to convert text into speech using various voice models. It provides both GET and
-        POST endpoints for generating audio output.</p>
-    <h2 id="base-url">Base URL</h2>
-    <pre><code><span class="hljs-symbol">http:</span><span class="hljs-comment">//localhost:8000/</span>
-    </code></pre>
-    <h2 id="endpoints">Endpoints</h2>
-    <h3 id="convert-text-to-speech-post-">Convert Text to Speech (POST)</h3>
-    <p>Converts the provided text into speech using the specified voice model.</p>
-    <pre><code>POST <span class="hljs-regexp">/api/</span>tts
-    </code></pre>
-    <h4 id="request-body">Request Body</h4>
-    <p>The request body should be a JSON object with the following properties:</p>
-    <ul>
-        <li><code>text</code> (string, required): The text to be converted into speech.</li>
-        <li><code>voice</code> (string, optional): The voice model to be used for speech synthesis. If not provided, the
-            default voice model will be used.</li>
-    </ul>
-    <h5 id="example-request-body">Example Request Body</h5>
-    <pre><code class="lang-json">{
-      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Hello, world!"</span>,
-      <span class="hljs-attr">"voice"</span>: <span class="hljs-string">"en-us-libritts-low.onnx"</span>
-    }
-    </code></pre>
-    <h4 id="response">Response</h4>
-    <ul>
-        <li>Status Code: 200 (OK)</li>
-        <li>Content-Type: audio/wav</li>
-    </ul>
-    <p>The response will be an audio file in WAV format containing the synthesized speech.</p>
-    <h5 id="example-response">Example Response</h5>
-    <pre><code>HTTP/1.1 <span class="hljs-number">200</span> OK
-    <span class="hljs-attribute">Content-Type</span>: audio/wav
-    <span class="hljs-attribute">Content-Length</span>: &lt;file_size&gt;
-    
-    <span class="armasm">&lt;<span class="hljs-keyword">binary </span>audio <span class="hljs-meta">data</span>&gt;</span>
-    </code></pre>
-    <h3 id="convert-text-to-speech-get-">Convert Text to Speech (GET)</h3>
-    <p>Converts the provided text into speech using the specified voice model.</p>
-    <pre><code>GET <span class="hljs-meta-keyword">/api/</span>tts?text=<span class="hljs-params">&lt;text&gt;</span><span class="hljs-variable">&amp;voice</span>=<span class="hljs-params">&lt;voice&gt;</span>
-    </code></pre>
-    <h4 id="parameters">Parameters</h4>
-    <ul>
-        <li><code>text</code> (string, required): The text to be converted into speech.</li>
-        <li><code>voice</code> (string, optional): The voice model to be used for speech synthesis. If not provided, the
-            default voice model will be used.</li>
-    </ul>
-    <h4 id="response">Response</h4>
-    <ul>
-        <li>Status Code: 200 (OK)</li>
-        <li>Content-Type: audio/wav</li>
-    </ul>
-    <p>The response will be an audio file in WAV format containing the synthesized speech.</p>
-    <h5 id="example-response">Example Response</h5>
-    <pre><code>HTTP/1.1 <span class="hljs-number">200</span> OK
-    <span class="hljs-attribute">Content-Type</span>: audio/wav
-    <span class="hljs-attribute">Content-Length</span>: &lt;file_size&gt;
-    
-    <span class="armasm">&lt;<span class="hljs-keyword">binary </span>audio <span class="hljs-meta">data</span>&gt;</span>
-    </code></pre>
-    <h3 id="get-list-of-available-voices">Get List of Available Voices</h3>
-    <p>Retrieves a list of available voice models that can be used for speech synthesis.</p>
-    <pre><code>GET <span class="hljs-regexp">/api/</span>voices
-    </code></pre>
-    <h4 id="response">Response</h4>
-    <ul>
-        <li>Status Code: 200 (OK)</li>
-        <li>Content-Type: application/json</li>
-    </ul>
-    <p>The response will be a JSON array containing the names of available voice models.</p>
-    <h5 id="example-response">Example Response</h5>
-    <pre><code>HTTP/1.1 <span class="hljs-number">200</span> OK
-    <span class="hljs-attribute">Content-Type</span>: application/json
-    <span class="hljs-attribute">Content-Length</span>: &lt;response_size&gt;
-    
-    <span class="json">[
-      <span class="hljs-string">"en-us-libritts-high.onnx"</span>,
-      <span class="hljs-string">"en-us-libritts-low.onnx"</span>,
-      ...
-    ]</span>
-    </code></pre>
-    <h2 id="error-responses">Error Responses</h2>
-    <p>In case of errors, the API will return an appropriate HTTP status code along with an error message in the response
-        body.</p>
-    <ul>
-        <li>Status Code: 400 (Bad Request)</li>
-        <li>Content-Type: text/plain</li>
-    </ul>
-    <pre><code>HTTP/1.1 <span class="hljs-number">400</span> Bad Request
-    <span class="hljs-attribute">Content-Type</span>: text/plain
-    
-    <span class="subunit"><span class="hljs-keyword">Error </span>parsing JSON: Invalid request body</span>
-    </code></pre>
-    <ul>
-        <li>Status Code: 500 (Internal Server Error)</li>
-        <li>Content-Type: text/plain</li>
-    </ul>
-    <pre><code>HTTP/1.1 <span class="hljs-number">500</span> Internal Server Error
-    <span class="hljs-attribute">Content-Type</span>: text/plain
-    
-    <span class="subunit"><span class="hljs-keyword">Error </span>running executable: Failed to start speech synthesis process</span>
-    </code></pre>
+    <h1>serve-piper-tts</h1>
+    <a href="https://github.com/arunk140/serve-piper-tts">Github Repo</a>
+    <br>
+    <a href="https://github.com/arunk140/serve-piper-tts/blob/main/Docs.md">Docs</a>
 </body>
 </html>
