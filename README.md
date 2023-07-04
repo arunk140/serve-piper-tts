@@ -2,6 +2,8 @@
 
 Voice Samples from Piper - https://rhasspy.github.io/piper-samples/
 
+![image](https://github.com/arunk140/serve-piper-tts/assets/8670239/b0c7e4cf-d3cd-42f1-bb29-46674a762e45)
+
 Hosted API Test Server (Temporary Link) - https://voice.arunk140.com/ | https://voice.arunk140.com/api/tts?text=github
 
 Go Lang API Wrapper around Piper TTS - Supports TTS Inference and List of Voices
