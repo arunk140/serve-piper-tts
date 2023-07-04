@@ -23,11 +23,14 @@ const (
 )
 
 func escapeString(input string) string {
-	// escape single quotes, pipe, and backslash, and double quotes
-	input = strings.Replace(input, "'", "\\'", -1)
-	input = strings.Replace(input, "|", "\\|", -1)
-	input = strings.Replace(input, "\\", "\\\\", -1)
-	input = strings.Replace(input, "\"", "\\\"", -1)
+	input = strings.Replace(input, "'", "", -1)
+	input = strings.Replace(input, "|", "", -1)
+	input = strings.Replace(input, "\\", "", -1)
+	input = strings.Replace(input, "\"", "", -1)
+	input = strings.Replace(input, "\n", " ", -1)
+	input = strings.Replace(input, "  ", " ", -1)
+	input = strings.TrimSpace(input)
+
 	return input
 }
 
@@ -115,6 +118,7 @@ func runExecutable(input string, voice string) (io.Reader, error) {
 }
 
 func handlePostRequest(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	var jsonBody struct {
 		Text  string `json:"text"`
 		Voice string `json:"voice"`
@@ -176,6 +180,7 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleGetRequest(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "audio/wav")
 	w.WriteHeader(http.StatusOK)
 
@@ -228,6 +233,7 @@ func main() {
 	r.HandleFunc("/api/tts", handleGetRequest).Methods("GET")
 
 	r.HandleFunc("/api/voices", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		voices, err := getListOfVoices()
 		if err != nil {
 			http.Error(w, "Error getting list of voices", http.StatusInternalServerError)
@@ -238,6 +244,7 @@ func main() {
 	}).Methods("GET")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
+	r.Use(mux.CORSMethodMiddleware(r))
 
 	http.Handle("/", r)
 
